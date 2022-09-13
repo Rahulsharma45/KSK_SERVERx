@@ -1,4 +1,4 @@
-name: ☄️ KSK OP ️☄️
+name: ☄️ ASTEROID ️☄️
 
 on:
     push:
@@ -17,7 +17,7 @@ jobs:
          with:
             all_but_latest: true
             access_token: ${{ github.token }}
-       - name: ☢️ INITIALISING KSK SERVER ☢️
+       - name: ☢️ INITIALISING ASTEROID ☢️
          continue-on-error: true
          run: |
            git config --global user.name ${{ secrets.GIT_NAME }}
@@ -27,20 +27,20 @@ jobs:
        - name: ©️ CLONING REPOSITORY ©️
          continue-on-error: true
          run: |
-           git clone https://${{ secrets.GIT_NAME }}:${{ secrets.GIT_TOKEN }}@${{ secrets.BOT_REPO }} ksk
-       - name: 📀 RUNNING KSK SERVER 📀
+           git clone https://${{ secrets.GIT_NAME }}:${{ secrets.GIT_TOKEN }}@${{ secrets.BOT_REPO }} asteroid
+       - name: 📀 RUNNING ASTEROID SERVER 📀
          timeout-minutes: 350
          continue-on-error: true
          run: |
            cd asteroid
-           docker build . -t ksk
-           docker run ksk
-       - name: 💫 LOOP KSK SERVER 💫
+           docker build . -t asteroid
+           docker run asteroid
+       - name: 💫 LOOP ASTEROID SERVER 💫
          continue-on-error: true
          run: |
               git clone https://github.com/${GITHUB_REPOSITORY} loop
               cd loop || exit 1
               echo $(date -u +%T%P) >> loop.txt
               git add loop.txt
-              git commit -m " 💫 LOOP KSK SERVER 💫"
-              git push -q https://${{ secrets.GIT_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:ksk
+              git commit -m " 💫 LOOP ASTEROID SERVER 💫"
+              git push -q https://${{ secrets.GIT_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:asteroid
